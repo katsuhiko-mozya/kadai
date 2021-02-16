@@ -4,15 +4,48 @@
     <title>htmlフォーム　メール編</title>
 </head>
 <body>
+ <!--
+       問い合わせの種類
+       名前
+       メールアドレス
+       電話番号
+       相談内容
+-->     
  <form action="index.html" method="POST" >
-<fieldset margin:20px padding:10px width:100px>
+<fieldset style="border:1px solid #000000;width:50%;">
 <legend>お問い合わせ</legend>
-      <label for="toiawase">お問い合わせをこちらに書き込んでください。</label><br>
-      <textarea name="toiawase" id="toiawase" cols="30" rows="10" autofocus></textarea><br>
-<label for="imail">email:</label><br>
-      <input type="email" id="imail" name="imail"  autocomplete="off" size="25">
+<label for="syurui">1.お問い合わせの種類</label>
+<select name="syurui" id="syurui">
+<option value="相談">相談したい</option>
+<option value="申し込み">申し込みをしたい</option>
+<option value="その他">その他</option>
+</select><br>
+
+2．名前：<br>
+<label for="fname">苗字：</label>
+<input type="text " id="fname" name="fname" >
+<label for="lname">名前：</label>
+<input type="text" id="lname" name="lname" ><br>
+<!--フリガナ<br>
+<label for="ffname">：</label>
+<input type="text " id="ffname" name="ffname">
+<label for="flname">：</label>
+<input type="text" id="flname" name="flname"><br>-->
+
+3.メールアドレス：<br>
+<label for="mail">mail:</label>
+<input type="email" required><br>
+
+4.電話番号<br>
+<label for="telphone">tel:</label>
+<input type="tel" id="telphone" name="telephone" placeholder="00011112222" ><br><!--pattern="[0-9]{11}"--> 
+
+5.相談内容<br>
+<label for="soudan"></label>
+<textarea name="soudan" id="soudan" cols="30" rows="10"></textarea><br>
+<input type="submit" value="送信">
 </fieldset>
-<input type="submit" id="imail">
+
  </form>   
 </body>
 </html>
