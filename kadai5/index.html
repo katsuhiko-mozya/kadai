@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>html form アンケート編</title>
+</head>
+<body>
+ <form action="index.html" method="POST">
+アンケートにご協力ください。<br>
+<label for="kaisya">御社名:</label>
+<input type="text" id="kaisya" name="kaisya" autofocus><br>
+
+<label for="name">お名前:</label>
+<input type="text" id="name" name="name"><br>
+
+<label for="age">年齢:</label>
+<input type="number" id="age" name="age"><br>
+
+<label for="naiyou">セミナーの内容:</label>
+<input type="checkbox" id="naiyou" name="naiyou" value="1">非常によかった
+<input type="checkbox" id="naiyou" name="naiyou" value="2">良かった
+<input type="checkbox" id="naiyou" name="naiyou" value="3">普通
+<input type="checkbox" id="naiyou" name="naiyou" value="4">良くなかった
+<input type="checkbox" id="naiyou" name="naiyou" value="5">非常に良くなかった<br>
+
+<label for="time">セミナーの実施時間:</label>
+<input type="checkbox" id="time" name="time" value="1">非常によかった
+<input type="checkbox" id="time" name="time" value="2">良かった
+<input type="checkbox" id="time" name="time" value="3">普通
+<input type="checkbox" id="time" name="time" value="4">良くなかった
+<input type="checkbox" id="time" name="time" value="5">非常に良くなかった<br>
+
+<label for="place">セミナー会場:</label>
+<input type="checkbox" id="place" name="place" value="1">非常によかった
+<input type="checkbox" id="place" name="place" value="2">良かった
+<input type="checkbox" id="place" name="place" value="3">普通
+<input type="checkbox" id="place" name="place" value="4">良くなかった
+<input type="checkbox" id="place" name="place" value="5">非常に良くなかった<br>
+
+<label for="mail">弊社からのメールを送信していいですか？:</label>
+<input type="checkbox" id="nmail" name="mail" value="1" checked="checked">はい
+<input type="checkbox" id="mail" name="mail" value="2">いいえ<br>
+
+<label for="sonota">その他、質問など</label><br>
+<textarea name="sonota" id="sonota" cols="30" rows="10"></textarea><br>
+
+<input type="submit" value="送信">
+ </form>   
+</body>
+</html>
