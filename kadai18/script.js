@@ -23,9 +23,8 @@ function showitem(){
            break;
 
         case "/" :
-          if(y=0){
-              console.log(y)
-              window.alert(入力しなおしてください);
+          if(y===0){
+              window.alert("入力しなおしてください");
           } else{
             a=x/y 
             window.alert(a);
@@ -34,7 +33,7 @@ function showitem(){
            break;  
         
          default:
-             window.alert(入力しなおしてください);
+             window.alert("入力しなおしてください");
              break;
     };
 
