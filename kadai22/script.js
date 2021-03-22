@@ -6,12 +6,14 @@ $(document).ready(function(){
         dataType: 'json',
         jsonpCallback: 'jsondata',
             success: function(json){
+                let newrow = "<table><thead><tr><td>受注日時</td><td>商品名</td><td>価格</td><td>顧客ナンバー</td></tr></thead><tbody>"
                 json.forEach(function(data,index){
-                    let newrow = "<tr><td>"+ data.受注日時 + "</td><td>" + data.商品名　+ "</td><td>" + data.価格 + "</td><td>" + data.顧客ナンバー + "</td></tr>";
-                    $("tbody").append(newrow);  
-                                        });
-                                     }
+                     newrow += "<tr><td>"+ data.受注日時 + "</td><td>" + data.商品名　+ "</td><td>" + data.価格 + "</td><td>" + data.顧客ナンバー + "</td></tr>";
+                    
+                    });
+                   newrow += "</tbody></table>"
+                    $("body").append(newrow);               }
             });
         });  
-       // <table><tbody></tbody></tbody></table>
+       // <table><tbody></tbody></table>
        // <thead><tr><td>受注日時</td><td>商品名</td><td>価格</td><td>顧客ナンバー</td></tr></thead>
