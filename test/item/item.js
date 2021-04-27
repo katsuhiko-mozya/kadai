@@ -41,12 +41,14 @@ console.log(kazu)
 let cartrow ="" ;
 if (kazu===0) {
   kazu=kazu+1;
-  cartrow =  "<tr><td>"+item2+"</td><td>"+price+"</td><td>"+kazu+"</td></tr>";
+  cartrow =  '<tr><td id="'+item2+'">'+item2+"</td><td>"+price+"</td><td>"+kazu+"</td></tr>";
   $("#cart").append(cartrow);
   $(this).closest("tr").find("td:eq(4)").find('input[type="hidden"]').attr("id",kazu);
 }else{
   kazu2=kazu+1;
-  $("#cart").find("tr").find("td:eq(2)").text(kazu2);
+  if (item2 === $(this).closest("tr").find("td:eq(0)").attr("id")) {
+    $("#cart").find("tr").find("td:eq(2)").text(kazu2);
+  }
   kazu=kazu2;
   $(this).closest("tr").find("td:eq(4)").find('input[type="hidden"]').attr("id",kazu);
 };
