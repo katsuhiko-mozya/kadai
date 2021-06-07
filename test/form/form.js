@@ -1,5 +1,6 @@
 $(document).ready(function () {
     var param = location.search.split("&")
+    
    console.log(param)
    $.each(param,function(index,value) {
    let newrow = "<td>" + value.replace("?","").replace("name=","").replace("tel=","").replace("mail=","").replace("toiawase=","") + "</td>";
