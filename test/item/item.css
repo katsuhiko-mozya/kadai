@@ -1,6 +1,9 @@
 .wrapper{
     min-height: 100vh;    
-    margin: 0px;
+    position: relative;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+    
 }
 
 body{margin: 0px;}
@@ -11,14 +14,15 @@ header{
     height: 100px;
     }
 
+
+
 footer{
-    position: absolute;
-    bottom:0;
+    
     width: 100%;
     background: #02DEC4;
-    }
-#sendorder{
-    margin:0px;
-    display:inline;
-    
-};
+    position: absolute;
+    bottom: 0;
+       
+}
+
+
