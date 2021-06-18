@@ -1,6 +1,6 @@
 
 //取得
-$(function () {
+
   $(document).ready(function () {
         let url = "https://script.google.com/macros/s/AKfycbydqc9C9FFtK2LURN9uv2NRqtbiEVfv0FkpyZpmMTa8mCn1Acw9MJcBRH5y9FMJVvFx/exec"
         $.ajax({
@@ -17,20 +17,20 @@ $(function () {
                 addbutton =  "<input type=" + '"button" class="btn btn-primary" id="' + item.商品ID + ' "value="追加">'
               }
               c=item.商品ID 
-              let itemrow = "<tr id='"+c+"'><td>" + item.商品ID  + "</td><td><sapn>" + item.商品名 +"</span></td><td>" + item.価格 +"</td><td>" + item.商品紹介 +"</td><td>" + addbutton +'</td></tr>';
+              let itemrow = "<tr id='"+c+"'><td>" + item.商品ID  + "</td><td><sapn>" + item.商品名 +"</span></td><td>" + item.価格.toLocaleString() +"</td><td>" + item.商品紹介 +"</td><td>" + addbutton +'</td></tr>';
               $("#select").append(itemrow);  
   
             });
           }
         });    
       });
-    });
+    
   //cart
     $(function(){
       $(document).on("click", "input[type='button'][value='追加']", function(){
         //取得
-        var item2 = $(this).closest("tr").find("td:eq(1)").text();
-        var price = $(this).closest("tr").find("td:eq(2)").text();
+        var item2 = $(this).closest("tr").find("td:eq(1)").text().replace(",","");
+        var price = $(this).closest("tr").find("td:eq(2)").text().replace(",","");
        //カートの数字管理
        //基本は１だがすでにtableの中にtrがある場合そこから読み取り＋１する
         var a=1
@@ -45,15 +45,15 @@ $(function () {
         if ($("#cart>tr#"+item2).length){
         //もうある          
         $("#cart>tr#"+item2).find("td:eq(2)").text(a)
-          $("#cart>tr#"+item2).find("td:eq(3)").text(amount)
+          $("#cart>tr#"+item2).find("td:eq(3)").text(amount.toLocaleString())
           upd_amount()
-  
+          cartview()
         }else{
           //ない
-          let cartrow = "<tr id='"+item2+"'><td><span>"+item2+"</span></td><td>"+price+"</td><td>"+a+"</td><td>"+amount+'</td><td><input type= "button" class="btn btn-primary"  value="削除"></td></tr>'
+          let cartrow = "<tr id='"+item2+"'><td><span>"+item2+"</span></td><td>"+parseInt(price).toLocaleString()+"</td><td>"+a+"</td><td>"+amount.toLocaleString()+'</td><td><input type= "button" class="btn btn-primary"  value="削除"></td></tr>'
             $("#cart").append(cartrow)
             upd_amount()
-  
+            cartview()
        };
   
         });
@@ -62,7 +62,7 @@ $(function () {
           $(document).on("click", "input[type='button'][value='削除']", function(){
             $(this).closest("tr").remove();
             upd_amount()
-            
+            cartview()
   
             }); 
       
@@ -91,26 +91,34 @@ $(function () {
             //headers: {key:"secret"},//任意
             data: JSON.stringify(items),
             timeout: 3000,
-                success: function(json){
-                    
-                    upd_stock()
-                    //サンクスページにとばす
-                    location.href="itemthank.html"
-                }
-        });
+          }).done(function () {
+            upd_stock()
+            //サンクスページにとばす
+            location.href="itemthank.html"
+            }).fail(function () {
+              window.alert("error")
+            })
+          
+              
+          
         
       });
   
       function  upd_amount() {
          //合計金額
-         var allamuount=0;
-          $("tbody#cart>tr").each(function (index,tr) {
-            goukei=$(tr).find("td:eq(3)").text();
-        all=allamuount+= parseInt(goukei.replace(",",""));
-        tax=allamuount*1.1;
-        $("#nottax").text(all);
-        $("#zeikomi").text(Math.ceil(tax));
-          });
+         if ($("tbody#cart>tr").length) {
+             var allamuount=0;
+            $("tbody#cart>tr").each(function (index,tr) {
+              goukei=$(tr).find("td:eq(3)").text();
+          all=allamuount+= parseInt(goukei.replace(",",""));
+          tax=allamuount*1.1;
+          $("#nottax").text(all.toLocaleString());
+          $("#zeikomi").text(Math.ceil(tax).toLocaleString());//Math.ceil(tax)→小数点切り上げ切り上げ
+            });
+        }else{
+          $("#nottax").text(0);
+          $("#zeikomi").text(0);
+        }
         
       };
 
@@ -139,6 +147,12 @@ $(function () {
       
       };
 
-  
+  function cartview(){
+    var cartv=0;
+    $("tbody#cart>tr").each(function (index,tr) {
+      cartv+=parseInt($(tr).find("td:eq(2)").text());
+console.log(cartv)
+  $("span.cart_view").text("カート："+cartv);
+  });
+};
       
- 

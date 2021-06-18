@@ -1,0 +1,28 @@
+.wrapper{
+    min-height: 100vh;    
+    position: relative;
+    padding-bottom: 60px;
+    box-sizing: border-box;
+    
+}
+
+body{margin: 0px;}
+
+header{
+    width: 100%;
+    background: #02DEC4;
+    height: 100px;
+    }
+
+
+
+footer{
+    
+    width: 100%;
+    background: #02DEC4;
+    position: absolute;
+    bottom: 0;
+       
+}
+
+
