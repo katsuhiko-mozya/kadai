@@ -1,7 +1,5 @@
-
 //取得
-
-  $(document).ready(function () {
+$(document).ready(function () {
         let url = "https://script.google.com/macros/s/AKfycbydqc9C9FFtK2LURN9uv2NRqtbiEVfv0FkpyZpmMTa8mCn1Acw9MJcBRH5y9FMJVvFx/exec"
         $.ajax({
           type: "GET",
@@ -40,7 +38,6 @@
         }
        //計算
         amount = a*price;
-  
         //追加
         if ($("#cart>tr#"+item2).length){
         //もうある          
@@ -65,13 +62,9 @@
             cartview()
   
             }); 
-      
-        
         });
      
-  
-      
-  //送信
+      //送信
       $("#send").on("click",function() {
         let url = "https://run.mocky.io/v3/a05d6d4c-4d45-49c2-9d3a-31d00b3bc2a6";
         let items = []
@@ -83,7 +76,6 @@
           items.push(data)//作った連想配列をitemsの配列に追加
         });
       
-         
         $.ajax({
             type: 'POST',
             url: url,
@@ -98,10 +90,6 @@
             }).fail(function () {
               window.alert("error")
             })
-          
-              
-          
-        
       });
   
       function  upd_amount() {
@@ -119,7 +107,6 @@
           $("#nottax").text(0);
           $("#zeikomi").text(0);
         }
-        
       };
 
       //在庫更新
@@ -144,7 +131,6 @@
                 }    
       
             });
-      
       };
 
   function cartview(){
