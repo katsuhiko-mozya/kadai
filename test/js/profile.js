@@ -1,8 +1,10 @@
 $(document).ready(function(){
+    //パラメータ取得
     const param = location.search
-   
-    url = "https://script.google.com/macros/s/AKfycbzgRgaXOnAiD0OTPyx0U8dJWMw6UguZMvqdKUdQe-gqlCB5adoi-KATw_OyQ5F3PgaO/exec" + param 
-    
+   //urlにパラメータをつける
+    url = "https://script.google.com/macros/s/AKfycbzgRgaXOnAiD0OTPyx0U8dJWMw6UguZMvqdKUdQe-gqlCB5adoi-KATw_OyQ5F3PgaO/exec" + param ;
+    console.log(url)
+    //ajaxでdata読み込み
     $.ajax({
         type: "GET",
         url: url,

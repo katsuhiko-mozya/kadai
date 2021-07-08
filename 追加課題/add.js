@@ -8,15 +8,9 @@ $(document).ready(function () {
     }).done(function (response){
         console.log(response)
         $.each(response.result, function(i, json){
-            let row1 ="<tr><td>"+json.ID+"</td><td>"+json.NAME+"</td><td>"+json.CODE+"</td></tr>"
+            let row1 ="<tr><td>"+json.ID+'</td><td><a href="add2.html?id='+json.ID+'">'+json.NAME+'</a></td><td>'+Math.floor(json.PRICE)+'円</td></tr>'
             $("tbody#1").append(row1)
-
-            let row2 ="<tr><th>ID</th><td>"+json.ID+"<td></tr>"
-            let row3 ="<tr><th>NAME</th><td>"+json.NAME+"<td></tr>"
-            let row4 ="<tr><th>CODE</th><td>"+json.CODE+"<td></tr>"
-            console.log(row2)
-            $("tbody#2").append(row2,row3,row4)
-        })
+})
     
     })
 })
