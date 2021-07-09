@@ -17,7 +17,7 @@ $.ajax({
 .done(function (response2) {
     console.log(response2)
     item=response2.result
-    let row = "<tr><td>"+ item.TIMESTAMP_X +"</td><td>"+ item.DESCRIPTION +"</td><td>" + item.CURRENCY_ID +"</td></tr>"
+    let row = "<tr><td>"+ item.TIMESTAMP_X +"</td><td>"+ item.DESCRIPTION +"</td><td>" + item.CURRENCY_ID +'</td><td><a href="edit.html?id='+item.ID+'"><input type="button" class="btn btn-primary" id="' + item.ID + ' "value="編集"></a></td></tr>'
     console.log(row)
     $("tbody").append(row);                
     
