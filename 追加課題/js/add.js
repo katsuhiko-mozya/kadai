@@ -8,7 +8,7 @@ $(document).ready(function () {
     }).done(function (response){
         console.log(response)
         $.each(response.result, function(i, json){
-           let row1 ='<tr id="'+json.ID+'"><td>'+json.ID+'</td><td><a href="add2.html?id='+json.ID+'">'+json.NAME+'</a></td><td>'+Math.floor(json.PRICE)+'円</td><td><a href="edit.html?id='+json.ID+'"><input type="button" class="btn btn-primary" id="' + json.ID + ' "value="編集"></a></td><td><input type="button" class="btn btn-primary" id="' + json.ID + ' "value="削除"></td></tr>'
+           let row1 ='<tr id="'+json.ID+'"><td>'+json.ID+'</td><td><a href="read.html?id='+json.ID+'">'+json.NAME+'</a></td><td>'+Math.floor(json.PRICE)+'円</td><td><a href="edit.html?id='+json.ID+'"><input type="button" class="btn btn-primary" id="' + json.ID + ' "value="編集"></a></td><td><input type="button" class="btn btn-primary" id="' + json.ID + ' "value="削除"></td></tr>'
             $("tbody#1").append(row1)
 })
     
