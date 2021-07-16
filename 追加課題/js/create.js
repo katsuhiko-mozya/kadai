@@ -6,6 +6,7 @@ $(document).ready(function () {
 $(document).on("submit","form",function(e){
     e.preventDefault()
     let form =f_to_j($("form").serializeArray());
+    form["CURRENCY_ID"]="JPY"//CURRENCY_IDというkeyを作成。そこにJPYを代入
   console.log(form)
     $.ajax({
         type: "POST",
@@ -32,6 +33,7 @@ function f_to_j(json) {
         }else{
             var jvalue = json[idx].value//form32を取得
             rtnjson[json[idx].name] = jvalue//ID=32
+            console.log(json[idx].name)
         }
     }
     return rtnjson;//変数に代入form
