@@ -11,9 +11,11 @@ class Likeread extends React.Component {
   
     <table>
   <thead>
+    <tr>
     <th>TIMESTAMP_X</th>
     <th>DESCRIPTION</th>
     <th>CURRENCY_ID</th>
+    </tr>
   </thead>
   <tbody></tbody>
 </table>

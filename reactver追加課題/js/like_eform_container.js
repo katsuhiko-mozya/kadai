@@ -8,24 +8,27 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var Likeform = function (_React$Component) {
-  _inherits(Likeform, _React$Component);
+var Likeeform = function (_React$Component) {
+  _inherits(Likeeform, _React$Component);
 
-  function Likeform(props) {
-    _classCallCheck(this, Likeform);
+  function Likeeform(props) {
+    _classCallCheck(this, Likeeform);
 
-    var _this = _possibleConstructorReturn(this, (Likeform.__proto__ || Object.getPrototypeOf(Likeform)).call(this, props));
+    var _this = _possibleConstructorReturn(this, (Likeeform.__proto__ || Object.getPrototypeOf(Likeeform)).call(this, props));
 
-    _this.state = { NAME: "", PRICE: "", DESCRIPTION: "" };
+    _this.state = { ID: "", NAME: "", PRICE: "", DESCRIPTION: "" };
     _this.valuechange = _this.valuechange.bind(_this);
     _this.valuesubmit = _this.valuesubmit.bind(_this);
     return _this;
   }
 
-  _createClass(Likeform, [{
+  _createClass(Likeeform, [{
     key: "valuechange",
     value: function valuechange(event) {
       switch (event.target.name) {
+        case "ID":
+          this.setState({ ID: event.target.value });
+          break;
         case "NAME":
           this.setState({ NAME: event.target.value });
           break;
@@ -42,7 +45,7 @@ var Likeform = function (_React$Component) {
   }, {
     key: "valuesubmit",
     value: function valuesubmit(event) {
-      alert('A name was submitted: ' + this.state.NAME + this.state.PRICE);
+      alert('A name was submitted: ' + this.state.ID + this.state.NAME + this.state.PRICE + this.state.DESCRIPTION);
       event.preventDefault();
     }
   }, {
@@ -51,6 +54,13 @@ var Likeform = function (_React$Component) {
       return React.createElement(
         "form",
         { onSubmit: this.valueSubmit },
+        React.createElement(
+          "label",
+          null,
+          "ID:",
+          React.createElement("input", { name: "ID", type: "text", value: this.state.ID, onChange: this.valuechange, required: true }),
+          React.createElement("br", null)
+        ),
         React.createElement(
           "label",
           null,
@@ -71,13 +81,13 @@ var Likeform = function (_React$Component) {
           "DESCRIPTION:",
           React.createElement("textarea", { name: "DESCRIPTION", cols: "30", rows: "10", required: true })
         ),
-        React.createElement("input", { type: "submit", value: "Submit" })
+        React.createElement("input", { type: "submit", value: "edit" })
       );
     }
   }]);
 
-  return Likeform;
+  return Likeeform;
 }(React.Component);
 
-var domContainer = document.querySelector('#like_cform_container');
-ReactDOM.render(React.createElement(Likeform, null), domContainer);
+var domContainer = document.querySelector('#like_eform_container');
+ReactDOM.render(React.createElement(Likeeform, null), domContainer);

@@ -30,19 +30,23 @@ var Likeread = function (_React$Component) {
           'thead',
           null,
           React.createElement(
-            'th',
+            'tr',
             null,
-            'TIMESTAMP_X'
-          ),
-          React.createElement(
-            'th',
-            null,
-            'DESCRIPTION'
-          ),
-          React.createElement(
-            'th',
-            null,
-            'CURRENCY_ID'
+            React.createElement(
+              'th',
+              null,
+              'TIMESTAMP_X'
+            ),
+            React.createElement(
+              'th',
+              null,
+              'DESCRIPTION'
+            ),
+            React.createElement(
+              'th',
+              null,
+              'CURRENCY_ID'
+            )
           )
         ),
         React.createElement('tbody', null)
