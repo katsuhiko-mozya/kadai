@@ -19,8 +19,10 @@ var Likeadd = function (_React$Component) {
     _this.state = {
       error: null,
       isLoaded: false,
-      rows: []
+      rows: [],
+      ID: ""
     };
+    _this.handleClick = _this.handleClick.bind(_this);
     return _this;
   }
 
@@ -39,7 +41,6 @@ var Likeadd = function (_React$Component) {
       .then( //done
       function (response) {
         //=.then(res => res.json())   urlのresultの中身　ex.result: Array(28)
-        console.log(response);
         _this2.setState({
           isLoaded: true,
           rows: response.result //stateにresponseのresultを代入＝stateに情報いっぱい
@@ -52,8 +53,28 @@ var Likeadd = function (_React$Component) {
       });
     }
   }, {
+    key: "handleClick",
+    value: function handleClick(event) {
+      // this.setState({ID: event.target.id});
+      fetch("https://ateliercloudllc.bitrix24.jp/rest/1/pzxzq747zf5dgg89/crm.product.delete", {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({ ID: event.target.id })
+      }).then(function (res) {
+        return res.json();
+      }).then(function (dresult) {
+        console.log(dresult);
+        location.href = "add.html";
+      });
+    }
+  }, {
     key: "render",
     value: function render() {
+      var _this3 = this;
+
       var _state = this.state,
           error = _state.error,
           isLoaded = _state.isLoaded,
@@ -122,28 +143,28 @@ var Likeadd = function (_React$Component) {
                       null,
                       React.createElement(
                         "a",
-                        { href: "read.html?state=" },
+                        { href: 'read.html?id=' + row.ID },
                         row.NAME
                       )
                     ),
                     React.createElement(
                       "td",
                       null,
-                      row.PRICE
+                      Math.floor(row.PRICE).toLocaleString()
                     ),
                     React.createElement(
                       "td",
                       null,
                       React.createElement(
                         "a",
-                        { href: "edit.html" },
+                        { href: 'edit.html?id=' + row.ID },
                         React.createElement("input", { type: "button", value: "\u7DE8\u96C6" })
                       )
                     ),
                     React.createElement(
                       "td",
                       null,
-                      React.createElement("input", { type: "button", value: "\u524A\u9664" })
+                      React.createElement("input", { type: "button", value: "\u524A\u9664", id: row.ID, onClick: _this3.handleClick })
                     )
                   )
                 );
@@ -158,5 +179,5 @@ var Likeadd = function (_React$Component) {
   return Likeadd;
 }(React.Component);
 
-var domContainer = document.querySelector('#like_table_container');
+var domContainer = document.querySelector('#like_add_container');
 ReactDOM.render(React.createElement(Likeadd, null), domContainer);

@@ -42,15 +42,30 @@ var Likeform = function (_React$Component) {
   }, {
     key: "valuesubmit",
     value: function valuesubmit(event) {
-      alert('A name was submitted: ' + this.state.NAME + this.state.PRICE);
-      event.preventDefault();
+      event.preventDefault(); //page変更阻止
+      fetch("https://ateliercloudllc.bitrix24.jp/rest/1/pzxzq747zf5dgg89/crm.product.add", {
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify({ fields: { NAME: this.state.NAME, PRICE: this.state.PRICE, DESCRIPTION: this.state.DESCRIPTION } }) }) //JSON.stringify送信用のJSONに変換（object(json)=>JSON)
+
+      .then(function (res) {
+        return res.json();
+      }) //res(宣言)=>res.json()(jsonで格納)
+      .then(function (eresult) {
+        //前のthenの処理結果
+        console.log(eresult);
+        location.href = "add.html";
+      });
     }
   }, {
     key: "render",
     value: function render() {
       return React.createElement(
         "form",
-        { onSubmit: this.valueSubmit },
+        { onSubmit: this.valuesubmit },
         React.createElement(
           "label",
           null,
@@ -69,7 +84,7 @@ var Likeform = function (_React$Component) {
           "label",
           null,
           "DESCRIPTION:",
-          React.createElement("textarea", { name: "DESCRIPTION", cols: "30", rows: "10", required: true })
+          React.createElement("textarea", { name: "DESCRIPTION", cols: "30", rows: "10", required: true, value: this.state.DESCRIPTION, onChange: this.valuechange })
         ),
         React.createElement("input", { type: "submit", value: "Submit" })
       );

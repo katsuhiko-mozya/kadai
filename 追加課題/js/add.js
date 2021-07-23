@@ -16,6 +16,8 @@ $(document).ready(function () {
 
     $(document).on("click","input[type='button'][value='削除']",function () {
         id=$(this).closest("tr").attr("id")
+
+        
         console.log(id)
         $.ajax({
             type: "POST",
