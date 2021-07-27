@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="JP">
+  <head>
+<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+</head>
+  <body>
+   <form action="param.php?param=get" method="GET">
+       <input type="number" name="1">
+       <select id="name" name="2">
+        <option value="+">+</option>
+        <option value="-">-</option>
+        <option value="*">×</option>
+        <option value="/">÷</option>  
+    </select>
+    <input type="number" name="3">
+    <input type="submit">
+   </form>
+
+   <form action="param.php?param=post" method="POST">
+    <input type="number" name="4">
+    <select id="name" name="5">
+     <option value="+">+</option>
+     <option value="-">-</option>
+     <option value="*">×</option>
+     <option value="/">÷</option>  
+ </select>
+ <input type="number" name="6">
+ <input type="submit">
+</form>
+ 
+  </body>
+</html>

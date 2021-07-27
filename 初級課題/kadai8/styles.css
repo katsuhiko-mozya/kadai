@@ -1,0 +1,12 @@
+.gazou1:hover{
+    background-image:url("IMG_0041.jpg");
+    object-fit:cover;
+}
+
+.gazou1 {
+    width: 200px;
+    height: 200px;
+    background-image:url("sample.jpg");
+    object-fit:cover;
+    color: aliceblue;
+}

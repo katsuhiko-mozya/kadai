@@ -1,0 +1,13 @@
+
+
+.image2{
+    opacity: 0.7;
+}
+
+.sousin:hover{
+    opacity: 0.6;
+}
+
+p:hover{
+    display: none;
+}
