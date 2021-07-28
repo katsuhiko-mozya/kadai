@@ -9,65 +9,35 @@
 </head>
   <body>
 <?php
-if ($_SERVER["REQUEST_METHOD"] === "GET"){
- $number1= $_GET['number1'];
- $tool = $_GET['tool'];
- $number2 = $_GET['number2'];
- $ans = 0;
- switch ($tool) {
-     case '+':
-         $ans = $number1 + $number2;
-         echo $ans;
-         break;
-     
-    case '-':
-    $ans = $number1 - $number2;
-    echo $ans;
-    break;
-    
-    case '*':
-        $ans = $number1 * $number2;
-        echo $ans;
-        break;
-    
-    case '/':
-        $ans = $number1 / $number2;
-        echo $ans;
-        break;
-                
-     default:
-         break;
- }
-}  elseif ($_SERVER["REQUEST_METHOD"]) {
-    $number1= $_POST['number1'];
-    $tool = $_POST['tool'];
-    $number2 = $_POST['number2'];
-    $ans = 0;
-    switch ($tool) {
-        case '+':
-            $ans = $number1 + $number2;
-            echo $ans;
-            break;
-        
-        case '-':
-        $ans = $number1 - $number2;
-        echo $ans;
-        break;
-        
-        case '*':
-            $ans = $number1 * $number2;
-            echo $ans;
-            break;
-        
-        case '/':
-            $ans = $number1 / $number2;
-            echo $ans;
-            break;
-                    
-        default:
-            break;
+        if ($_SERVER["REQUEST_METHOD"] === "GET"){
+            $number1= $_GET['number1'];
+            $tool = $_GET['tool'];
+            $number2 = $_GET['number2'];
+        }  elseif ($_SERVER["REQUEST_METHOD"]) {
+            $number1= $_POST['number1'];
+            $tool = $_POST['tool'];
+            $number2 = $_POST['number2'];
         }
-    }
-                    ?>
+        switch ($tool) {
+            case '+':
+                echo $number1 + $number2;
+                break;
+            
+            case '-':
+                echo $number1 - $number2;
+                break;
+                        
+            case '*':
+                echo $number1 * $number2;
+                break;        
+
+            case '/':
+                echo $number1 / $number2;
+                break;
+            default:
+                break;
+        }
+
+?>
   </body>
 </html>
