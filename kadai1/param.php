@@ -38,38 +38,36 @@ if ($_SERVER["REQUEST_METHOD"] === "GET"){
      default:
          break;
  }
-}else if ($_SERVER["REQUEST_METHOD"]) {
- 
-    $number3= $_POST['number3'];
-    $tool2 = $_POST['tool2'];
-    $number4 = $_POST['number4'];
-    $ans2 = 0;
-    switch ($tool2) {
+}  elseif ($_SERVER["REQUEST_METHOD"]) {
+    $number1= $_POST['number1'];
+    $tool = $_POST['tool'];
+    $number2 = $_POST['number2'];
+    $ans = 0;
+    switch ($tool) {
         case '+':
-            $ans2 = $number3 + $number4;
-            echo $ans2;
+            $ans = $number1 + $number2;
+            echo $ans;
             break;
-            
-            case '-':
-                $ans2 = $number3 - $number4;
-                echo $ans2;
-                break;
-                
-                case '*':
-                    $ans2 = $number3 * $number4;
-                    echo $ans2;
-                    break;
+        
+        case '-':
+        $ans = $number1 - $number2;
+        echo $ans;
+        break;
+        
+        case '*':
+            $ans = $number1 * $number2;
+            echo $ans;
+            break;
+        
+        case '/':
+            $ans = $number1 / $number2;
+            echo $ans;
+            break;
                     
-                    case '/':
-                        $ans2 = $number3 / $number4;
-                        echo $ans2;
-                        break;
-                        
-                        default:
-                        error;
-                        break;
-                    }
-                }
+        default:
+            break;
+        }
+    }
                     ?>
   </body>
 </html>

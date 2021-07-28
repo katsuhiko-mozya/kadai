@@ -6,13 +6,13 @@
 </head>
   <body>
       <?php
-       $color="#".mt_rand(10,99).mt_rand(10,99).mt_rand(10,99);
-       $size=mt_rand(0,99)."px";
-    
-     echo "<p style=\"font-size:$size; color:$color \">";
- $p= $_POST['p'];
- echo $p;
-echo "</p>";
-?>
+            $color="#".dechex(mt_rand(0,15)).dechex(mt_rand(0,15)).dechex(mt_rand(0,15)).dechex(mt_rand(0,15)).dechex(mt_rand(0,15)).dechex(mt_rand(0,15));
+            $size=mt_rand(0,99)."px";
+          
+          echo "<p style=\"font-size:$size; color:$color \">";
+            $p= $_POST['p'];
+            echo $p;
+          echo "</p>";
+      ?>
   </body>
 </html>

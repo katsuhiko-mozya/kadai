@@ -7,14 +7,14 @@
   <body>
 <?php
 
-while ($x <= 99) {
-  $array[]=mt_rand(0,999);
-  $x++;
-}
+    while ($x <= 98) {
+        $array[]=mt_rand(0,999);
+        $x++;
+    }
 
-foreach($array as $index => $number){
-  echo "$index : $number <br>";
-}
+    foreach($array as $index => $number){
+         echo "$index : $number <br>";
+    }
 ?>
   </body>
 </html>
