@@ -9,15 +9,18 @@
 </head>
   <body>
 <?php
-        if ($_SERVER["REQUEST_METHOD"] === "GET"){
-            $number1= $_GET['number1'];
-            $tool = $_GET['tool'];
-            $number2 = $_GET['number2'];
-        }  elseif ($_SERVER["REQUEST_METHOD"]) {
-            $number1= $_POST['number1'];
-            $tool = $_POST['tool'];
-            $number2 = $_POST['number2'];
-        }
+        // if ($_SERVER["REQUEST_METHOD"] === "GET"){
+        //     $number1= $_GET['number1'];
+        //     $tool = $_GET['tool'];
+        //     $number2 = $_GET['number2'];
+        // }  elseif ($_SERVER["REQUEST_METHOD"]) {
+        //     $number1= $_POST['number1'];
+        //     $tool = $_POST['tool'];
+        //     $number2 = $_POST['number2'];
+        // }
+        $number1= $_GET['number1'] .$_POST['number1'];
+        $tool = $_GET['tool'] .$_POST['tool'];
+        $number2 = $_GET['number2'] .$_POST['number2'];
         switch ($tool) {
             case '+':
                 echo $number1 + $number2;
