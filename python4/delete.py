@@ -34,7 +34,7 @@ count=module.count(count,info_load,id)
 if all_part =="all":
     for i in info_load[count].values():
         print(i)
-    judge=input("以上の情報を削除します。本当によろしいですか？(yes/no)")
+    judge=input("↑以上の情報を削除します。本当によろしいですか？(yes/no)")
     if module.judge(judge):
         try:
             info_load.pop(count)
@@ -44,6 +44,7 @@ if all_part =="all":
         print("削除を中止しました。") 
 # 部分削除
 elif all_part=="part":
+    print("何番目の情報を削除しますか？")
     for index,i in enumerate(info_load[count].values()):
         if not index==0:
             print(index,i)
@@ -67,7 +68,7 @@ elif all_part=="part":
 
     if select=="1"  or select=="3" or select=="4":
         print(info_load[count][number])
-        judge=input("以上の情報を削除します。本当によろしいですか？(yes/no)")
+        judge=input("↑以上の情報を削除します。本当によろしいですか？(yes/no)")
         if module.judge(judge):
             try:
                 info_load[count][number]=""
@@ -78,26 +79,29 @@ elif all_part=="part":
     else:
         while True:
             try:
+                print("どの番号の情報を削除しますか？")
                 for index,i in enumerate(info_load[count][number].replace(",",""),1):
                     print(index,i)
             except:
                 print("情報が存在しません")
                 break
+            #検証
             del_part=int(input("どの番号の情報を削除しますか？番号で答えてください(ex.1,2,3...)："))-1
             try:
                 print(info_load[count][number].replace(",","")[del_part])
             except:
                 print("番号が一致しません。もう一度最初からやり直してください。")
                 break
-            judge=input("以上の情報を削除します。本当によろしいですか？(yes/no)")
+            judge=input("↑以上の情報を削除します。本当によろしいですか？(yes/no)")
             if module.judge(judge):
-                # 質問
-                # try:
-                    info_load[count][number].replace((info_load[count][number].replace(",","")[del_part-1]),"")
+                try:
+                    del_num=info_load[count][number].split(",")
+                    del_num.remove(del_num[del_part-1])
+                    info_load[count][number]=str(del_num).replace("[","").replace("]","").replace("'","")
                     break
-                # except:
-                #     print("削除に失敗しました。もう一度やり直してください。")    
-                #     break
+                except:
+                    print("削除に失敗しました。もう一度やり直してください。")    
+                    break
             else:
                 print("削除を中止しました。")
                 break        

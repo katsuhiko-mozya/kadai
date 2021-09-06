@@ -18,11 +18,10 @@ tel=input("電話番号を入力してください")
 
 flag=0
 for s in info_load:
-    if id==s["id"] or name==s["name"] or tel==s["tel"]:
+    if id==s["id"] and name in s["name"] and tel in s["tel"]:
         for p in s.values():
             print(p)
             flag=1
-    else:
-        flag=0
+
 if flag==0:
     print("データが見つかりません")
