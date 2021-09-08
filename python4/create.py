@@ -1,8 +1,6 @@
 import json
 import module
 
-info_load=[]
-
 try:
         # 'python3/info_cus.json'読み込み
     with open('python4/info_cus.json', 'r') as info_open:
@@ -28,7 +26,7 @@ main=input("お問い合わせ内容を入力してください:")
 
 if  not len(info_load)==0: #配列の和検証
     for x in info_load:
-        if name == x["name"] and tel == x["tel"]:
+        if name == x["name"] and tel in x["tel"].split(","):
             tel_ans=input("電話番号を追加しますか？(add),更新しますか(updt):")
             while True:
                 if tel_ans=="add":

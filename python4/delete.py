@@ -32,8 +32,8 @@ count=module.count(count,info_load,id)
 
 #全体削除           
 if all_part =="all":
-    for i in info_load[count].values():
-        print(i)
+    for index,i in enumerate(info_load[count].items(),1):
+        print(index,i[0],":",i[1])
     judge=input("↑以上の情報を削除します。本当によろしいですか？(yes/no)")
     if module.judge(judge):
         try:
@@ -45,9 +45,9 @@ if all_part =="all":
 # 部分削除
 elif all_part=="part":
     print("何番目の情報を削除しますか？")
-    for index,i in enumerate(info_load[count].values()):
+    for index,i in enumerate(info_load[count].items()):
         if not index==0:
-            print(index,i)
+            print(index,i[0],":",i[1])
     select=input("何番の情報を削除しますか?1,2,3,4,5:")
     while True:
         if select=="1" or select=="2" or select=="3" or select=="4" or select=="5"  :
@@ -78,9 +78,9 @@ elif all_part=="part":
             print("削除を中止しました。")
     else:
         while True:
+            print("どの番号の情報を削除しますか？")
             try:
-                print("どの番号の情報を削除しますか？")
-                for index,i in enumerate(info_load[count][number].replace(",",""),1):
+                for index,i in enumerate(info_load[count][number].split(","),1):
                     print(index,i)
             except:
                 print("情報が存在しません")
@@ -88,7 +88,7 @@ elif all_part=="part":
             #検証
             del_part=int(input("どの番号の情報を削除しますか？番号で答えてください(ex.1,2,3...)："))-1
             try:
-                print(info_load[count][number].replace(",","")[del_part])
+                print(info_load[count][number].split(",")[del_part])
             except:
                 print("番号が一致しません。もう一度最初からやり直してください。")
                 break
