@@ -10,12 +10,12 @@ def unique(id,info_load):
                  
 def judge(judge):
     while True:
-        if judge=="y":
+        if judge=="y" or judge=="Y":
             return True
-        elif judge=="n":
-            return False   
+        elif judge=="n" or judge=="N":
+            return False  
         else:
-            judge=input("yesかnoで答えてください")
+            judge=input("入力が間違っています。yかnで答えてください")
 
 def count(count,info_load,id):
     for id_array in info_load:
@@ -27,35 +27,41 @@ def edit(key,info_load,count,name):
         if  key :
             info_load[count][name]=key
 
-def upad(info_load,count,t_m,tm):
-    tel_judge=input(tm+"は上書きしますか？（Y)　追加しますか？（n）：")
-    while True:
-        if tel_judge=="Y" or tel_judge=="n":
-            break
-        else:
-            tel_judge=input("もう一度入力してください。"+tm+"は上書きしますか？（Y)　追加しますか？（n）：")
+def upad(info_load,count,t_m,tm1,tm2):
+    tel_judge=input(tm1+"は現在の情報から上書きして保存しますか？（y)　それとも追加しますか？（n）：")
+    module.judge(tel_judge)
 
-    if tel_judge=="Y":
-            print("何番目の"+tm+"の情報を更新しますか？")
-            for index,i in enumerate(info_load[count][tm].split(","),1):
+    if tel_judge=="y" or tel_judge=="Y":
+            print("何番目の"+tm1+"の情報を更新しますか？")
+            for index,i in enumerate(info_load[count][tm2].split(","),1):
                 print(index,i)      
-            edit_num=int(input("何番目の"+tm+"を更新しますか"))-1
-            dele =info_load[count][tm].split(",")
-            print(dele[edit_num]+"を更新します")
+            edit_num=int(input("何番目の"+tm1+"を更新しますか?:"))-1
+            updt_j=input(info_load[count][tm2].split(",")[edit_num]+"を更新してよろしいですか(y/n)")
+            if module.judge(updt_j):
+                dele =info_load[count][tm2].split(",")
+                try:
+                    dele[edit_num]=t_m
+                    info_load[count][tm2]=str(dele).replace("[","").replace("]","").replace("'","")
+                except:
+                    print("更新に失敗しました。最初からやり直してください。")    
+            else:
+                print("削除を中止しました")        
+    elif tel_judge=="n" or tel_judge=="N":
+        updt_j=input(t_m+"を追加してもよろしいですか？(y/n)")
+        if module.judge(updt_j):
             try:
-                dele[edit_num]=t_m
-                info_load[count][tm]=str(dele).replace("[","").replace("]","")
+                info_load[count][tm2]=info_load[count][tm2]+","+t_m
             except:
-                print("更新に失敗しました。最初からやり直してください。")    
-    elif tel_judge=="n":
-        info_load[count][tm]=info_load[count][tm]+","+t_m
+                print("追加に失敗しました")
+        else:
+            print("追加を中止しました")
 
 def over_lap(count,info_load): 
 
     print("こちらの情報を変更します。")
     for index,i in enumerate(info_load[count].items()):
         if not index==0:
-            print(index,i[0],":",i[1])
+            print(i[0],":",i[1])
  
     print("変更したい項目の情報を入力してください")
     name=input("名前:")
@@ -65,10 +71,10 @@ def over_lap(count,info_load):
     main=input("お問い合わせ内容:")
 
     if tel:
-        module.upad(info_load,count,tel,"tel")
+        module.upad(info_load,count,tel,"電話番号","tel")
 
     if main:
-        module.upad(info_load,count,main,"main")
+        module.upad(info_load,count,main,"お問い合わせ","main")
 
     module.edit(name,info_load,count,"name")
     module.edit(ad_num,info_load,count,"ad_num")
@@ -77,18 +83,41 @@ def over_lap(count,info_load):
     module.write(info_load)
 
 def delete(info_load,count):
-    all_part=input("削除する情報は全てですか?(Y),一部分ですか?(n):")
-    while True:
-        if all_part=="Y" or all_part=="n":
-            break
-        else:
-            all_part=input("入力が間違っています。もう一度入力してください。(削除する情報は全てですか?(Y),一部分ですか?(n)):")
-
+    print("お客様情報を表示します")
+    for index,i in enumerate(info_load[count].items(),1):
+        if index==1:
+            index="id"
+        elif index==2:    
+            index="名前"
+        elif index==3:    
+            index="電話番号"
+        elif index==4:    
+            index="郵便番号"
+        elif index==5:    
+            index="住所"
+        elif index==6:    
+            index="お問い合わせ"
+        print(index,":",i[1])
+    all_part=input("削除する情報は全てですか?(y),一部分ですか?(n):")
+    module.judge(all_part)
 
     #全体削除           
-    if all_part =="Y":
+    if all_part=="y" or all_part=="Y":
+        print("削除する情報を確認してください")
         for index,i in enumerate(info_load[count].items(),1):
-            print(index,i[0],":",i[1])
+            if index==1:
+                index="id"
+            elif index==2:    
+                index="名前"
+            elif index==3:    
+                index="電話番号"
+            elif index==4:    
+                index="郵便番号"
+            elif index==5:    
+                index="住所"
+            elif index==6:    
+                index="お問い合わせ"
+            print(index,":",i[1])
         judge=input("↑以上の情報を削除します。本当によろしいですか？(y/n)")
         if module.judge(judge):
             try:
@@ -98,11 +127,11 @@ def delete(info_load,count):
         else:
             print("削除を中止しました。") 
     # 部分削除
-    elif all_part=="n":
+    elif all_part=="n" or all_part=="N":
         print("何番目の情報を削除しますか？")
         for index,i in enumerate(info_load[count].items()):
             if not index==0:
-                print(index,i[0],":",i[1])
+                print(index,":",i[1])
         select=input("何番の情報を削除しますか?1,2,3,4,5:")
         while True:
             if select=="1" or select=="2" or select=="3" or select=="4" or select=="5"  :

@@ -7,13 +7,14 @@ try:
         info_load=json.load(info_open)
 except:
     info_load=[] 
+while True:
+    id= input("編集する情報のidを入力してください：")
+    count=0
+    count=module.count(count,info_load,id)
+    if module.unique(id,info_load):
+        module.over_lap(count,info_load)
+        break
 
-id= input("編集する情報のidを入力してください：")
-count=0
-count=module.count(count,info_load,id)
-if module.unique(id,info_load):
-    module.over_lap(count,info_load)
-
-else:
-    print("該当する情報が存在しません。もう一度やり直してください。")
+    else:
+        print("該当する情報が存在しません。もう一度やり直してください。")
 

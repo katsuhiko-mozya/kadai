@@ -10,14 +10,16 @@ try:
 except:
     info_load=[] 
 
-# id一致
-id=input("削除したい情報のIDを入力してください：")
-# 配列順番特定
-count=0
-count=module.count(count,info_load,id)
+    
+while True:
+    # id一致
+    id=input("削除したい情報のIDを入力してください：")
+    count=0
+    count=module.count(count,info_load,id)
+    # 配列順番特定
 
-
-if  module.unique(id,info_load):
-    module.delete(info_load,count)
-else:
-    print("情報が見つかりませんもう一度やり直してください。") 
+    if  module.unique(id,info_load):
+        module.delete(info_load,count)
+        break
+    else:
+        print("情報が見つかりませんでした。もう一度入力してください。")
