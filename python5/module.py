@@ -59,9 +59,20 @@ def upad(info_load,count,t_m,tm1,tm2):
 def over_lap(count,info_load): 
 
     print("こちらの情報を変更します。")
-    for index,i in enumerate(info_load[count].items()):
-        if not index==0:
-            print(i[0],":",i[1])
+    for index,i in enumerate(info_load[count].items(),1):
+        if index==1:
+            index="id"
+        elif index==2:    
+            index="名前"
+        elif index==3:    
+            index="電話番号"
+        elif index==4:    
+            index="郵便番号"
+        elif index==5:    
+            index="住所"
+        elif index==6:    
+            index="お問い合わせ"
+        print(index,":",i[1])
  
     print("変更したい項目の情報を入力してください")
     name=input("名前:")
