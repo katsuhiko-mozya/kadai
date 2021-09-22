@@ -15,6 +15,7 @@ count=0
 count=module.count(count,info_load,id)
 
 if  module.unique(id,info_load):
+    print("idが一致したので登録情報を変更します")
     module.over_lap(count,info_load)
 else:
     name=input("名前を入力してください:")

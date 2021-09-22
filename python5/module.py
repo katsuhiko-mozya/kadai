@@ -32,11 +32,23 @@ def upad(info_load,count,t_m,tm1,tm2):
     module.judge(tel_judge)
 
     if tel_judge=="y" or tel_judge=="Y":
+        if len(info_load[count][tm2].split())>=2:
             print("何番目の"+tm1+"の情報を更新しますか？")
             for index,i in enumerate(info_load[count][tm2].split(","),1):
-                print(index,i)      
-            edit_num=int(input("何番目の"+tm1+"を更新しますか?:"))-1
-            updt_j=input(info_load[count][tm2].split(",")[edit_num]+"を更新してよろしいですか(y/n)")
+                print(index,i) 
+
+            updt_arry=[]
+            for index,i in enumerate(info_load[count][tm2].split(",")):
+                updt_arry.append(index)
+            while True:
+                    edit_num=int(input("何番目の"+tm1+"を更新しますか?:"))-1
+                    if edit_num in updt_arry:
+                        break 
+                    else:
+                        print("値が存在しません。もう一度選択してください")
+            print(info_load[count][tm2].split(",")[edit_num])                  
+
+            updt_j=input("以上の情報を更新してよろしいですか(y/n)")
             if module.judge(updt_j):
                 dele =info_load[count][tm2].split(",")
                 try:
@@ -46,6 +58,15 @@ def upad(info_load,count,t_m,tm1,tm2):
                     print("更新に失敗しました。最初からやり直してください。")    
             else:
                 print("削除を中止しました")        
+        else:
+            updt_j=input("新しく値を"+t_m+"として更新してもよろしいですか？(y/n)")
+            if module.judge(updt_j):
+                try:
+                    info_load[count][tm2]=t_m
+                except:
+                    print("追加に失敗しました")
+            else:
+                print("追加を中止しました")    
     elif tel_judge=="n" or tel_judge=="N":
         updt_j=input(t_m+"を追加してもよろしいですか？(y/n)")
         if module.judge(updt_j):
@@ -172,36 +193,38 @@ def delete(info_load,count):
             else:
                 print("削除を中止しました。")
         else:
-            while True:
+            if len(info_load[count][number].split())>=2:
                 print("どの番号の情報を削除しますか？")
-                try:
-                    for index,i in enumerate(info_load[count][number].split(","),1):
-                        print(index,i)
-                except:
-                    print("情報が存在しません")
-                    break
+                del_num_array=[]
+                for index,i in enumerate(info_load[count][number].split(","),1):
+                    print(index,i)
+                    del_num_array.append(int(index)-1)
                 #検証
-                del_part=int(input("どの番号の情報を削除しますか？番号で答えてください(ex.1,2,3...)："))-1
-                try:
-                    print(info_load[count][number].split(",")[del_part])
-                except:
-                    print("番号が一致しません。もう一度最初からやり直してください。")
-                    break
+                while True:
+                    del_part=int(input("どの番号の情報を削除しますか？番号で答えてください(ex.1,2,3...)："))-1
+                    if del_part in del_num_array:
+                        print(info_load[count][number].split(",")[del_part])
+                        break
+                    else:
+                        print("番号が一致しません。もう一度入力し直してください。")
                 judge=input("↑以上の情報を削除します。本当によろしいですか？(y/n)")
                 if module.judge(judge):
                     try:
                         del_num=info_load[count][number].split(",")
                         del_num.remove(del_num[del_part-1])
                         info_load[count][number]=str(del_num).replace("[","").replace("]","").replace("'","")
-                        break
                     except:
                         print("削除に失敗しました。もう一度やり直してください。")    
-                        break
                 else:
-                    print("削除を中止しました。")
-                    break        
+                    print("削除を中止しました。")      
+            elif len(info_load[count][number].split())==1:
+                updt_j=input(info_load[count][number]+"を削除してもよろしいですか？(y/n)")
+                if module.judge(updt_j):
+                    info_load[count][number].split(",").remove(info_load[count][number][0])
+            else:
+                print("削除する項目がありません")
 
-    module.write(info_load)
+            module.write(info_load)
 
 def write(info_load):
     with open('python5/info_cus.json', 'w')  as f:
