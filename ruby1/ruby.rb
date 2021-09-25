@@ -6,9 +6,12 @@ z = x**y
 
 puts z
 
-puts '3で割り切れませんでした' unless z / 3
+unless  z%3==0 then
+    puts '3で割り切れませんでした'  
+end
 
-case z / 2
+
+case z%2
 when 0
   puts 'zは偶数です'
 else
